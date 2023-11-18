@@ -34,6 +34,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                 case "/start":
                     startCommand(chatID, update.getMessage().getChat().getFirstName());
                     break;
+                case "/json":
+                    // Handle JSON
+                    break;
                 default:
                     sendMessage(chatID,"Command is unknown");
 
