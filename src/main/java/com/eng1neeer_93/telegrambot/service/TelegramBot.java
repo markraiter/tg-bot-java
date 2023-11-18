@@ -1,6 +1,8 @@
 package com.eng1neeer_93.telegrambot.service;
 
 import com.eng1neeer_93.telegrambot.config.BotConfig;
+import com.eng1neeer_93.telegrambot.enums.Emoji;
+import com.vdurmont.emoji.EmojiParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -53,8 +55,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     private void startCommand(long chatID, String firstName) {
-        String answer = firstName+", hello.";
-        sendMessage(chatID, answer);
+        String answer = Emoji.SMILE.getEmoji() +firstName+", hello."+Emoji.WINK_EYE.getEmoji();
+        String response = EmojiParser.parseToUnicode(answer);
+        sendMessage(chatID, response);
     }
 
     @Override
