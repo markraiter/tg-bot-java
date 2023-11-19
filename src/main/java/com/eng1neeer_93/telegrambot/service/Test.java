@@ -15,22 +15,22 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"))
-                .GET()
-                .build();
-
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String res = response.body().toString();
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<CurrencyJSON> listJSON = new ArrayList<>();
-        TypeReference<List<CurrencyJSON>> listType = new TypeReference<List<CurrencyJSON>>(){};
-        listJSON = mapper.readValue(res, listType);
-
-        System.out.println(listJSON);
-        System.out.println("====================     THE END     =====================");
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(new URI("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"))
+//                .GET()
+//                .build();
+//
+//        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+//        String res = response.body().toString();
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        List<CurrencyJSON> listJSON = new ArrayList<>();
+//        TypeReference<List<CurrencyJSON>> listType = new TypeReference<List<CurrencyJSON>>(){};
+//        listJSON = mapper.readValue(res, listType);
+//
+//        System.out.println(listJSON);
+//        System.out.println("====================     THE END     =====================");
     }
 }

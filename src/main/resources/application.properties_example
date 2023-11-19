@@ -1,0 +1,6 @@
+#Telegram config
+bot.name=your_bot_name
+bot.token=your_bot_token
+
+#Helper for NBU URL
+json.url=https://some_url
