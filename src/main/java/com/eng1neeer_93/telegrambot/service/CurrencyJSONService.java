@@ -24,7 +24,7 @@ public class CurrencyJSONService {
     private static List<CurrencyJSON> currencyJSONList = new ArrayList<>();
 
     @Value("${json.url}")
-    public static void setURL(String url) {
+    public void setURL(String url) {
         CurrencyJSONService.URL = url;
     }
 
@@ -46,7 +46,7 @@ public class CurrencyJSONService {
         CurrencyJSON curr = getCurrencyJSON(currency);
 
         String result = curr != null ?
-                curr.getCurrencyCode() + "\n" + curr.getCurrencyText() + curr.getRate() : "ERROR";
+                curr.getCurrencyCode() + " rate is " + curr.getRate() : "ERROR";
 
         return result;
     }

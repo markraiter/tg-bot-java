@@ -2,5 +2,5 @@
 
 ## Getting started
 
-Before run the app, create `application.properties` file in `./src/main/resources` just like in `application.properties_example` file and store there data for your bot.
+Before run the app, create `.env` file in root directory just like in `.env_example` file and store there data for your bot.
 

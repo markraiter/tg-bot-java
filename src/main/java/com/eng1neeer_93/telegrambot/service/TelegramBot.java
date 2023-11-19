@@ -4,6 +4,7 @@ import com.eng1neeer_93.telegrambot.config.BotConfig;
 import com.eng1neeer_93.telegrambot.enums.Emoji;
 import com.eng1neeer_93.telegrambot.utils.KeyboardRow;
 import com.vdurmont.emoji.EmojiParser;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -23,6 +24,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.botConfig = botConfig;
     }
 
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()){
@@ -43,6 +45,15 @@ public class TelegramBot extends TelegramLongPollingBot {
                     sendMessage(chatID,"Command is unknown");
 
             }
+        } else if (update.hasCallbackQuery()) {
+            String callbackData = update.getCallbackQuery().getData();
+            long chatID = update.getCallbackQuery().getMessage().getChatId();
+
+            CurrencyJSONService service = new CurrencyJSONService();
+
+            String message = service.getResponse(callbackData);
+
+            sendMessage(chatID, message);
         }
     }
 

@@ -25,11 +25,30 @@ public class KeyboardRow {
         ils.setText("IL shekel");
         ils.setCallbackData("ILS");
 
+        List<InlineKeyboardButton> secondRow = new ArrayList<>();
+
+        InlineKeyboardButton rub = new InlineKeyboardButton();
+        rub.setText("RU ruble");
+        rub.setCallbackData("RUB");
+
+        InlineKeyboardButton pln = new InlineKeyboardButton();
+        pln.setText("PL zloty");
+        pln.setCallbackData("PLN");
+
+        InlineKeyboardButton cad = new InlineKeyboardButton();
+        cad.setText("CA dollar");
+        cad.setCallbackData("CAD");
+
         firstRow.add(usd);
         firstRow.add(eur);
         firstRow.add(ils);
 
+        secondRow.add(rub);
+        secondRow.add(pln);
+        secondRow.add(cad);
+
         rows.add(firstRow);
+        rows.add(secondRow);
 
         keyboardMarkup.setKeyboard(rows);
 
