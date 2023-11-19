@@ -2,6 +2,7 @@ package com.eng1neeer_93.telegrambot.service;
 
 import com.eng1neeer_93.telegrambot.config.BotConfig;
 import com.eng1neeer_93.telegrambot.enums.Emoji;
+import com.eng1neeer_93.telegrambot.utils.KeyboardRow;
 import com.vdurmont.emoji.EmojiParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
@@ -35,12 +37,27 @@ public class TelegramBot extends TelegramLongPollingBot {
                     startCommand(chatID, update.getMessage().getChat().getFirstName());
                     break;
                 case "/json":
-                    // Handle JSON
+                    handleRequest(chatID, "Select currency");
                     break;
                 default:
                     sendMessage(chatID,"Command is unknown");
 
             }
+        }
+    }
+
+    private void handleRequest(long chatID, String selectCurrency) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatID);
+        message.setText(selectCurrency);
+
+        InlineKeyboardMarkup markup = KeyboardRow.createKeyboardCurrency();
+        message.setReplyMarkup(markup);
+
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
         }
     }
 
